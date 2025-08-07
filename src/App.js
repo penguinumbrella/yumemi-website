@@ -1,20 +1,39 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header';
-import Features from './components/Features';
-import Vision from './components/Vision';
-import Screenshots from './components/Screenshots';
-import Footer from './components/Footer';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import './index.css';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import PerformanceMonitor from './components/ui/PerformanceMonitor';
+import Home from './components/pages/Home';
+import TermsOfService from './components/pages/TermsOfService';
+import PrivacyPolicy from './components/pages/PrivacyPolicy';
+
+// Component to scroll to top on route changes
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Features />
-      <Vision />
-      <Screenshots />
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+        </Routes>
+        <Footer />
+        <PerformanceMonitor />
+      </div>
+    </Router>
   );
 }
 
