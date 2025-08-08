@@ -21,7 +21,7 @@ const ScrollToTop = () => {
 
 function App() {
   return (
-    <Router basename="/yumemi-website">
+    <Router>
       <ScrollToTop />
       <div className="App">
         <Header />
